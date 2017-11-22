@@ -1,3 +1,5 @@
+
+
 /*h1 {
   animation: moveInTest 1.8s ease-in 1.5s;
 }*/
@@ -5,7 +7,7 @@
 
 /*@keyframes moveInTest {
   0% {
-    /*opacity: 0;*/*/
+    /*opacity: 0;*/
     /*transform: translateY(900px);
   }
 
@@ -43,7 +45,7 @@
 
   90% {
     transform: translateX(-1000px)
-  }*/*/
+  }*/
   /*100% {
     opacity: 1;
     transform: translate(0);

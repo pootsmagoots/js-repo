@@ -373,34 +373,32 @@ var john = {  /*Object literal
 
 
 
-
-function printFullAge(years) {
-  var ages = [];
-  var fullAges = [];
-
-  for (var i = 0; i < years.length; i++) {
-    ages[i] = 2017 - years[i];
-  }
-
-  for (var i = 0; i < ages.length; i ++) {
-    if (ages[i] >= 18) {
-      console.log("person " + (i + 1) + " is " + ages[i] + " years old, and is full age" )
-      fullAges.push(true);
-    } else
-      console.log("person " + (i + 1) + " is " + ages[i] + " years old, and is full age" )
-      fullAges.push(false);
-  }
-
-  return fullAges;
-
-}
-
-
-var years = [2001,1985,1994,2014,1973];
-var full_1 =  printFullAge(years);
-var full_2 =  printFullAge([2012,2015,2018,2025]);
-
-
+//
+// function printFullAge(years) {
+//   var ages = [];
+//   var fullAges = [];
+//
+//   for (var i = 0; i < years.length; i++) {
+//     ages[i] = 2017 - years[i];
+//   }
+//
+//   for (var i = 0; i < ages.length; i ++) {
+//     if (ages[i] >= 18) {
+//       console.log("person " + (i + 1) + " is " + ages[i] + " years old, and is full age" )
+//       fullAges.push(true);
+//     } else
+//       console.log("person " + (i + 1) + " is " + ages[i] + " years old, and is not full age" )
+//       fullAges.push(false);
+//   }
+//
+//   return fullAges;
+//
+// }
+//
+//
+// var years = [2001,1985,1994,2014,1973];
+// var full_1 =  printFullAge(years);
+// var full_2 =  printFullAge([2012,2015,2018,2025]);
 
 
 // var years = [1986,1999,2008,2015];
@@ -434,3 +432,145 @@ var full_2 =  printFullAge([2012,2015,2018,2025]);
 // }
 //
 // printFullAge();
+
+
+
+// function personsAge(years) {
+// var ages = [];
+// var fullAge = [];
+//
+//
+//   for (var i = 0; i < years.length; i++) {
+//      ages[i] = 2017 - years[i];
+//   }
+//   for (var i = 0; i < ages.length; i++) {
+//     if (ages[i] >= 21) {
+//       console.log("Person " + (i + 1) + " You are of age");
+//       fullAge.push();
+//     } else if (ages[i] >= 18)  {
+//       console.log("Person " + (i + 1) + " You may enter but not drink");
+//       fullAge.push()
+//     } else {
+//       console.log("Person " + (i + 3) + " You may not enter or drink sorry!")
+//       fullAge.push()
+//     }
+//
+//   }
+//    return fullAge
+// }
+//
+// var years = [1990,1952,1986,1988,1999,1998,2007,2005];
+// var full_1 =  personsAge(years);
+// var full_2 =  personsAge([2012,2015,2018,2025]);
+
+
+
+
+
+//Hoisting Prcatice //
+///////////////////////////////////////
+// Lecture: Hoisting
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////
+// Lecture: Scoping
+
+
+// First scoping example
+
+/*
+var a = 'Hello!';
+first();
+
+function first() {
+    var b = 'Hi!';
+    second();
+
+    function second() {
+        var c = 'Hey!';
+        console.log(a + b + c);
+    }
+}
+*/
+
+
+
+// Example to show the differece between execution stack and scope chain
+
+// function caluclateAge(year) {  /*declaration function */
+//   console.log(2016 - year )
+// }
+// calculateAge(1990);
+//
+//
+// var retirement = function(year) { /* expression function */
+//   console.log()
+// }
+
+// calculateAge(1986);
+//
+// function calculateAge(year) {
+//   console.log(2016 - year);
+//   console.log(this);
+// }
+//
+
+var john = {
+  name: "john",
+  yearofBirth: 1990,
+  calculateAge: function () {
+    console.log(this);
+    console.log(2017 - this.yearofBirth);
+  }
+}
+
+john.calculateAge();
+
+
+var mike = {
+  name: "mike",
+  yearofBirth: 1985
+};
+
+mike.calculateAge = john.calculateAge
+mike.calculateAge();
+
+//
+// var a = 'Hello!';
+// first();
+//
+// function first() {
+//     var b = 'Hi!';
+//     second();
+//
+//     function second() {
+//         var c = 'Hey!';
+//         third()
+//     }
+// }
+//
+// function third() {
+//     var d = 'John';
+//     console.log(a + b + c + d);
+// }
+//
+//
+
+
+///////////////////////////////////////
+// Lecture: The this keyword
