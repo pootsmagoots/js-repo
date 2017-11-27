@@ -9,83 +9,75 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, name1, name2;
+var scores, roundScore, activePlayer, gamePlaying, gameScore;
 
-scores = [0,0];
-roundScore = 0;
-activePlayer = 0;
+init ();
 
+var lastDice;
 
-
-document.querySelector(".dice").style.display = 'none'; /*example of style.display css */
-
+var gameScore =
 
 // function  btn() { // this is a expression function and could be called back
 //   //do something here
 // }
 // btn();
 
-document.getElementById('score-0').textContent = '0';  /*another way to target ID in the DOM */
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
-
-
-
-
 document.querySelector('.btn-roll').addEventListener('click', function() { /*start of function */
+if (gamePlaying) {
+  /*  Random Number */
+ var dice = Math.floor(Math.random() * 6) + 1;
 
 
- /*  Random Number */
-var dice = Math.floor(Math.random() * 6) + 1;
+ /* display result */
+ var diceDom = document.querySelector('.dice');
+ diceDom.style.display = 'block';
+ diceDom.src = 'dice-' + dice + '.png'
 
-/* display result */
-var diceDom = document.querySelector('.dice');
-diceDom.style.display = 'block';
-diceDom.src = 'dice-' + dice + '.png'
-
-/*update score IF user does not roll a 1 */
-if (dice !== 1) {
-  // Add score
-  roundScore += dice;
-  document.querySelector('#current-' + activePlayer).textContent = roundScore;  /*selects element and gets text*/
-} else {
-  // next player
+ /*update score IF user does not roll a 1 */
+ if (dice === 6 && lastDice === 6) {
+   //player loses score
+   scores[activePlayer] = 0;
+  document.querySelector('#score-' + activePlayer).textContent = '0';
   nextPlayer();
+ } else if (dice !== 1) {
+   // Add score
+   roundScore += dice;
+   document.querySelector('#current-' + activePlayer).textContent = roundScore;  /*selects element and gets text*/
+ } else {
+   // next player
+   nextPlayer();
+   //  document.querySelector('.player-0-panel').classList.remove("active");
+   // document.querySelector('.player-1-panel').classList.add("active");
 
-
-  //  document.querySelector('.player-0-panel').classList.remove("active");
-  // document.querySelector('.player-1-panel').classList.add("active");
-
-}
-
+  }
+   lastDice = dice;
+ }
 });
 
 
 
 document.querySelector('.btn-hold').addEventListener('click', function(){
+
+  if (gamePlaying) {
    // Add current score  to global score
      scores[activePlayer] += roundScore
    //update the UI
- document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-
+    document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
    //check if player won the game
 
-   if (scores[activePlayer] >= 100) {
+   if (scores[activePlayer] >= gameScore ) {
      document.querySelector('#name-' + activePlayer).textContent = 'Winner!!';
      document.querySelector('.dice').style.display = 'none';
      document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
      document.querySelector('.player-' + activePlayer + '-panel').classList.remove('winner');
+     gamePlaying = false;
    } else {
+     //next player //
      nextPlayer();
    }
-  // if (scores[activePlayer] === 100) {
-  //   alert(activePlayer + " you have won the game")
-  // } else if (scores[activePlayer] > 100) {
-  //   activePlayer[scores] += 0;
-  //   alert(activePlayer + " sorry, your score is over 100 you will restart to 0")
-  // }
-   //nextPlayer
+
+   var lastDice = dice;
+ }
 })
 
 
@@ -105,6 +97,32 @@ function nextPlayer () {
 }
 
 
+document.querySelector('.btn-new').addEventListener('click', init); /*CALLS INIT FUNCTION */
+
+document.querySelector(".dice").style.display = 'none'; /*example of style.display css */
+
+function init () {
+  scores = [0,0];
+  activePlayer = 0;
+  roundScore = 0;
+  gamePlaying = true;
+  gameScore = document.querySelector('#score').value;
+
+
+
+  document.getElementById('score-0').textContent = '0';  /*another way to target ID in the DOM */
+  document.getElementById('score-1').textContent = '0';
+  document.getElementById('current-0').textContent = '0';
+  document.getElementById('current-1').textContent = '0';
+
+  document.getElementById('name-0').textContent = 'Player 1';
+  document.getElementById('name-1').textContent = 'Player 2';
+  document.querySelector('.player-0-panel').classList.remove('winner');
+  document.querySelector('.player-1-panel').classList.remove('winner');
+  document.querySelector('.player-0-panel').classList.remove('active');
+  document.querySelector('.player-1-panel').classList.remove('active');
+  document.querySelector('.player-0-panel').classList.add('active');
+};
 
 
 

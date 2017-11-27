@@ -41,6 +41,22 @@ body {
     overflow: hidden;
 }
 
+#score {
+  position: absolute;
+  top: 520px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #000;
+  width: 10em;
+  height: 3.5em;
+  text-transform: uppercase;
+}
+
+input::placeholder {
+  color: #555;
+ text-align: center;
+}
+
 .player-0-panel,
 .player-1-panel {
     width: 50%;
