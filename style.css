@@ -50,9 +50,14 @@ body {
   width: 10em;
   height: 3.5em;
   text-transform: uppercase;
+  text-align: center;
 }
 
-input::placeholder {
+#score:focus {
+  outline: none;
+}
+
+#score::placeholder {
   color: #555;
  text-align: center;
 }
@@ -164,11 +169,22 @@ i {
 .dice {
     position: absolute;
     left: 50%;
-    top: 178px;
+    top: 128px;
     transform: translateX(-50%);
     height: 100px;
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
 }
+
+.dice1 {
+    position: absolute;
+    left: 50%;
+    top: 238px;
+    transform: translateX(-50%);
+    height: 100px;
+    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+    margin-top: 10px;
+}
+
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
